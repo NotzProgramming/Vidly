@@ -1,0 +1,55 @@
+﻿@model Vidly.ViewModel.HomeViewModel
+@{
+    ViewBag.Title = "Vidly";
+}
+
+<div class="jumbotron">
+    <h1>Vidly</h1>
+    <p class="lead">Vidly是一個電影租借官方網站，你可以在這裡加入會員及查看店家所提供的電影。</p>
+    @Html.ActionLink("加入會員", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-primary" })
+    
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>熱門出租電影</h2>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                
+                @foreach(var movie in Model.PopularMovies)
+                {
+                    <th align="center">
+                        <img src=@movie.imagelink alt="movie image" style="width: 94px; height: 128px;"><br>
+                        @movie.Name<br>
+                        庫存:@movie.NumberInStock
+                    </th>
+                }
+            
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <p><a class="btn btn-default" href="~/movies">更多電影 &raquo;</a></p>
+    </div>
+
+    <div class="col-md-6">
+        <h2>最新電影</h2>
+        <table class="table table-bordered table-hover">
+            <thead>
+
+                @foreach (var movie in Model.NewMovies)
+                {
+                <th align="center">
+                    <img src=@movie.imagelink alt="movie image" style="width: 94px; height: 128px;"><br>
+                    @movie.Name<br>
+                    上映日期:@string.Format("{0:yyyy, MM, dd}", movie.ReleaseDate)
+                </th>
+                }
+
+                </thead>
+                <tbody></tbody>
+            </table>
+        <p><a class="btn btn-default" href="~/movies">更多電影 &raquo;</a></p>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿@model Vidly.Models.Customer
+
+@{
+     ViewBag.Title = Model.Name;
+     Layout = "~/Views/Shared/_Layout.cshtml";
+   }
+ 
+ <h2>@Model.Name</h2>
+<p>Membership Type: @Model.Name</p>
+@switch (Model.MembershipTypeId)
+{
+    case 1:
+        <p>Membership Type: Pay as You Go</p>
+        break;
+    case 2:
+        <p>Membership Type: Monthly</p>
+        break;
+    case 3:
+        <p>Membership Type: Quarterly</p>
+        break;
+    case 4:
+        <p>Membership Type: Yearly</p>
+        break;
+}
+
+@if (Model.Birthday != null)
+{
+    <p>Birthdate: @string.Format("{0:yyyy/M/d}", Model.Birthday)</p>
+}
+
+
+
+
